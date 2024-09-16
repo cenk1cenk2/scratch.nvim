@@ -17,7 +17,7 @@ function M.create_scratch_buffer(opts)
 
   local filetypes = vim.fn.getcompletion("", "filetype")
 
-  local c = require("scratch.config").get()
+  local c = require("scratch.config").read()
 
   local log = require("scratch.utils").setup({ level = c.log_level })
 
@@ -77,7 +77,7 @@ end
 --- Executes the current buffer in to a callback.
 ---@param cb fun(opts: scratch.ExecuteScratchBufferCallbackOptions): nil
 function M.execute_scratch_buffer(cb)
-  local c = require("scratch.config").get()
+  local c = require("scratch.config").read()
 
   local log = require("scratch.utils").setup({ level = c.log_level })
 
