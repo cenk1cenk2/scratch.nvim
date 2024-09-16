@@ -72,6 +72,7 @@ end
 ---@field path string
 ---@field bufnr number
 ---@field lines string[]
+---@field command string
 
 --- Executes the current buffer in to a callback.
 ---@param cb fun(opts: scratch.ExecuteScratchBufferCallbackOptions): nil
@@ -103,6 +104,7 @@ function M.execute_scratch_buffer(cb)
       filename = vim.api.nvim_buf_get_name(bufnr),
       path = vim.fn.expand("%"),
       lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false),
+      command = command,
     })
   end)
 end
