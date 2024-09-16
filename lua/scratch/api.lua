@@ -19,7 +19,7 @@ function M.create_scratch_buffer(opts)
 
   local c = require("scratch.config").read()
 
-  local log = require("scratch.utils").setup({ level = c.log_level })
+  local log = require("scratch.log").setup({ level = c.log_level })
 
   local cb = function(filetype)
     local bufnr = vim.api.nvim_create_buf(true, false)
@@ -79,7 +79,7 @@ end
 function M.execute_scratch_buffer(cb)
   local c = require("scratch.config").read()
 
-  local log = require("scratch.utils").setup({ level = c.log_level })
+  local log = require("scratch.log").setup({ level = c.log_level })
 
   local shada = require("scratch.shada")
   local store_key = "EXECUTE_SCRATCH_BUFFER_LAST"
