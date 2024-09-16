@@ -105,7 +105,7 @@ function M.execute_scratch_buffer(cb)
     cb({
       bufnr = bufnr,
       filename = vim.api.nvim_buf_get_name(bufnr),
-      path = vim.fn.expand("%"),
+      path = vim.fn.expand(("%%%s:p"):format(bufnr)),
       command = command,
     })
   end)
