@@ -67,8 +67,14 @@ function M.create_scratch_buffer(opts)
   end)
 end
 
+---@class scratch.ExecuteScratchBufferCallbackOptions
+---@field filename string
+---@field path string
+---@field bufnr number
+---@field lines string[]
+
 --- Executes the current buffer in to a callback.
----@param cb fun(filename: string, lines: string[]): nil
+---@param cb fun(opts: scratch.ExecuteScratchBufferCallbackOptions): nil
 function M.execute_scratch_buffer(cb)
   local c = require("scratch.config").get()
 
@@ -92,10 +98,12 @@ function M.execute_scratch_buffer(cb)
 
     shada.set(store_key, command)
 
-    local filename = vim.fn.expand("%")
-    local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
-
-    cb(filename, lines)
+    cb({
+      bufnr = bufnr,
+      filename = vim.api.nvim_buf_get_name(bufnr),
+      path = vim.fn.expand("%"),
+      lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false),
+    })
   end)
 end
 
