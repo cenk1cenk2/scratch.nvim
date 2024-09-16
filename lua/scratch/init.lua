@@ -1,4 +1,7 @@
-local M = {}
+local M = {
+  create_scratch_buffer = require("scratch.api").create_scratch_buffer,
+  execute_scratch_buffer = require("scratch.api").execute_scratch_buffer,
+}
 
 ---@param config scratch.Config
 function M.setup(config)
