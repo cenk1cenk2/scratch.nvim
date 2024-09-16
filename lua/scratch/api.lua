@@ -2,14 +2,14 @@ local M = {}
 
 local utils = require("scratch.utils")
 
----@class scratch.CreateScratchBufferOptions
+---@class scratch.CreateOptions
 ---@field filetype? string Filetype of the scratch buffer. [default=vim.ui.select]
 ---@field cwd? boolean | string Whether to use the current working directory or not. [default=true]
 ---@field events? string[] Event to delete the scratch buffer on. [default={"BufDelete", "VimLeavePre"}]
 
 --- Creates a new scratch buffer.
----@param opts scratch.CreateScratchBufferOptions
-function M.create_scratch_buffer(opts)
+---@param opts scratch.CreateOptions
+function M.create(opts)
   local c = require("scratch.config").read()
 
   opts = vim.tbl_deep_extend("force", {}, c, opts or {})
@@ -70,15 +70,15 @@ function M.create_scratch_buffer(opts)
   end)
 end
 
----@class scratch.ExecuteScratchBufferCallbackOptions
+---@class scratch.ExecuteCallbackOptions
 ---@field filename string
 ---@field path string
 ---@field bufnr number
 ---@field command string
 
 --- Executes the current buffer in to a callback.
----@param cb fun(opts: scratch.ExecuteScratchBufferCallbackOptions): nil
-function M.execute_scratch_buffer(cb)
+---@param cb fun(opts: scratch.ExecuteCallbackOptions): nil
+function M.execute(cb)
   local c = require("scratch.config").read()
 
   local log = require("scratch.log").setup({ level = c.log_level })

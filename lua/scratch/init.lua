@@ -1,6 +1,6 @@
 local M = {
-  create_scratch_buffer = require("scratch.api").create_scratch_buffer,
-  execute_scratch_buffer = require("scratch.api").execute_scratch_buffer,
+  create = require("scratch.api").create,
+  execute = require("scratch.api").execute,
 }
 
 ---@param config scratch.Config
