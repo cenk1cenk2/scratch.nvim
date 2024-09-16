@@ -4,37 +4,37 @@
 -- This library is free software; you can redistribute it and/or modify it
 -- under the terms of the MIT license. See LICENSE for details.
 
----@class jq.Logger: jq.LogAtLevel
----@field setup jq.LoggerSetupFn
----@field config jq.LoggerConfig
----@field p jq.LogAtLevel
+---@class scratch.Logger: scratch.LogAtLevel
+---@field setup scratch.LoggerSetupFn
+---@field config scratch.LoggerConfig
+---@field p scratch.LogAtLevel
 
----@class jq.LogAtLevel
+---@class scratch.LogAtLevel
 ---@field trace fun(...: any): string
 ---@field debug fun(...: any): string
 ---@field info fun(...: any): string
 ---@field warn fun(...: any): string
 ---@field error fun(...: any): string
 
----@class jq.Logger
+---@class scratch.Logger
 local M = {
   ---@diagnostic disable-next-line: missing-fields
   p = {},
 }
 
----@class jq.LoggerConfig
+---@class scratch.LoggerConfig
 ---@field level number
 ---@field plugin string
----@field modes jq.LoggerMode[]
+---@field modes scratch.LoggerMode[]
 
----@class jq.LoggerMode
+---@class scratch.LoggerMode
 ---@field name string
 ---@field level number
 
----@type jq.LoggerConfig
+---@type scratch.LoggerConfig
 M.config = {
   level = vim.log.levels.INFO,
-  plugin = "jq.nvim",
+  plugin = "scratch.nvim",
   modes = {
     { name = "trace", level = vim.log.levels.TRACE },
     { name = "debug", level = vim.log.levels.DEBUG },
@@ -44,12 +44,12 @@ M.config = {
   },
 }
 
----@class jq.LoggerSetup
+---@class scratch.LoggerSetup
 ---@field level? number
 
----@alias jq.LoggerSetupFn fun(config?: jq.LoggerSetup): jq.Logger
+---@alias scratch.LoggerSetupFn fun(config?: scratch.LoggerSetup): scratch.Logger
 
----@type jq.LoggerSetupFn
+---@type scratch.LoggerSetupFn
 function M.setup(config)
   M.config = vim.tbl_deep_extend("force", M.config, config or {})
 
