@@ -41,6 +41,7 @@ function M.create_scratch_buffer(opts)
     vim.api.nvim_create_autocmd(opts.events, {
       group = augroup,
       buffer = bufnr,
+      once = true,
       callback = function()
         os.remove(filename)
 
