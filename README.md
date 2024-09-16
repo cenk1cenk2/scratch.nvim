@@ -30,7 +30,7 @@ require("scratch").setup({
 })
 ```
 
-You can find the default configuration file and available options [here](https://github.com/cenk1cenk2/scratch.nvim/blob/main/lua/jq/config.lua).
+You can find the default configuration file and available options [here](https://github.com/cenk1cenk2/scratch.nvim/blob/main/lua/scratch/config.lua).
 
 ## Usage
 
