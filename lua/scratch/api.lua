@@ -27,9 +27,9 @@ function M.create_scratch_buffer(opts)
     ---@type string
     local filename
     if opts.cwd then
-      filename = ("%s.%s"):format(os.tmpname(), filetype)
-    else
       filename = ("_scratch-%s.%s"):format(utils.uuid(), filetype)
+    else
+      filename = ("%s.%s"):format(os.tmpname(), filetype)
     end
 
     vim.api.nvim_buf_set_name(bufnr, filename)
@@ -38,14 +38,13 @@ function M.create_scratch_buffer(opts)
     log.info("Created temporary file: %s", filename)
 
     local augroup = vim.api.nvim_create_augroup("scratch", {})
-    vim.api.create_autocmd({
-      augroup = augroup,
-      event = opts.events,
+    vim.api.nvim_create_autocmd(opts.events, {
+      group = augroup,
       buffer = bufnr,
       callback = function()
         os.remove(filename)
 
-        log:info("Removed temporary file: %s", filename)
+        log.info("Removed temporary file: %s", filename)
       end,
     })
   end
