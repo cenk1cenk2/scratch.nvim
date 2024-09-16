@@ -105,7 +105,7 @@ function M.execute(cb)
     cb({
       bufnr = bufnr,
       filename = vim.api.nvim_buf_get_name(bufnr),
-      path = vim.fn.expand(("%%%s:p"):format(bufnr)),
+      path = vim.fn.expand(("#%d:p"):format(bufnr)),
       command = command,
     })
   end)
